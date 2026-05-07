@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Q22 - React Component Composition</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin: 8px 0; background: #f9f9f9; }
+    button { padding: 8px 16px; margin-top: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    // Child Component 1
+    function Header({ title }) {
+      return (
+        <div className="card">
+          <h2>Header Component</h2>
+          <p>Title: {title}</p>
+        </div>
+      );
+    }
+
+    // Child Component 2
+    function Counter() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <div className="card">
+          <h2>Counter Component</h2>
+          <p>Count: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+      );
+    }
+
+    // Child Component 3
+    function Footer({ text }) {
+      return (
+        <div className="card">
+          <h2>Footer Component</h2>
+          <p>{text}</p>
+        </div>
+      );
+    }
+
+    // Parent Component — embeds all three child components
+    function App() {
+      return (
+        <div>
+          <h1>Parent Component</h1>
+          <Header title="Welcome to React!" />
+          <Counter />
+          <Footer text="2026 My App" />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+
+  </script>
+</body>
+</html>
